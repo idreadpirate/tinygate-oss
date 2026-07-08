@@ -1,0 +1,16 @@
+{"task":"01-sumdigits","arm":"raw","tokens":104945,"turns":6,"wall":29755,"passed":true,"grade":"PASS 500/500"}
+{"task":"01-sumdigits","arm":"old","tokens":40697,"turns":3,"wall":18307,"passed":true,"grade":"PASS 500/500"}
+{"task":"15-rle","arm":"raw","tokens":90284,"turns":5,"wall":35342,"passed":true,"grade":"PASS 500/500"}
+{"task":"15-rle","arm":"old","tokens":41398,"turns":3,"wall":17632,"passed":true,"grade":"PASS 500/500"}
+{"task":"43-mergeintervals","arm":"raw","tokens":126437,"turns":7,"wall":41132,"passed":true,"grade":"PASS 500/500"}
+{"task":"43-mergeintervals","arm":"old","tokens":72065,"turns":5,"wall":36093,"passed":true,"grade":"PASS 500/500"}
+{"task":"61-editdistance","arm":"raw","tokens":88374,"turns":5,"wall":26940,"passed":true,"grade":"PASS 500/500"}
+{"task":"61-editdistance","arm":"old","tokens":56024,"turns":4,"wall":18203,"passed":true,"grade":"PASS 500/500"}
+{"task":"80-nqueenscount","arm":"raw","tokens":70285,"turns":4,"wall":21703,"passed":true,"grade":"PASS 500/500"}
+{"task":"80-nqueenscount","arm":"old","tokens":55640,"turns":4,"wall":17038,"passed":true,"grade":"PASS 500/500"}
+{"task":"95-sqlwhere","arm":"raw","tokens":53902,"turns":3,"wall":29222,"passed":true,"grade":"PASS 500/500"}
+{"task":"95-sqlwhere","arm":"old","tokens":70312,"turns":5,"wall":16520,"passed":true,"grade":"PASS 500/500"}
+{"task":"01-sumdigits","arm":"new","tokens":68100,"turns":5,"wall":19349,"passed":true,"grade":"PASS 500/500"}
+{"task":"15-rle","arm":"new","tokens":131109,"turns":9,"wall":29859,"passed":true,"grade":"PASS 500/500"}
+{"task":"43-mergeintervals","arm":"new","tokens":146967,"turns":10,"wall":35578,"passed":true,"grade":"PASS 500/500"}
+{"task":"61-editdistance","arm":"new","tokens":163865,"turns":11,"wall":40912,"passed":true,"grade":"PASS 500/500"}

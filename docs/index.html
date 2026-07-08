@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tinygate — a 391-line ECU for AI coding agents</title>
+<meta name="description" content="A zero-dependency governor between an AI coding agent and its bill: proof-gated closure, cheap-model missions, replay on repeats. Rebuilt under one rule — every mechanism must beat an A/B test or it gets cut.">
+<style>
+  :root{
+    --surface:#0a0e12; --surface-2:#11161c; --line:#1e262e;
+    --ink:#e6edf3; --muted:#9aa4ad; --faint:#6b747d;
+    --green:#3fb950; --red:#f85149; --accent:#39c5cf;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--mono);
+    line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:.1px}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  .wrap{max-width:840px;margin:0 auto;padding:0 24px}
+  section{padding:60px 0;border-top:1px solid var(--line)}
+  h1,h2,h3{font-weight:600;letter-spacing:-.2px;margin:0}
+  h2{font-size:22px;margin-bottom:8px}
+  .eyebrow{color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+  .muted{color:var(--muted)} .faint{color:var(--faint)} .g{color:var(--green)} .r{color:var(--red)}
+  code{font-family:var(--mono)}
+  header{padding:84px 0 56px}
+  h1{font-size:clamp(28px,5vw,44px);line-height:1.12}
+  .lede{color:var(--muted);font-size:clamp(16px,2.3vw,19px);margin:22px 0 0;max-width:680px}
+  .install{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .install code{background:var(--surface-2);border:1px solid var(--line);border-radius:8px;
+    padding:12px 16px;font-size:14px;color:var(--ink)}
+  .btn{background:var(--green);color:#04140a;padding:12px 18px;border-radius:8px;font-weight:600;font-size:14px}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .receipts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:24px}
+  .tile{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:22px}
+  .tile .num{font-size:28px;font-weight:600;letter-spacing:-.5px}
+  .tile .num .was{color:var(--red)} .tile .num .arrow{color:var(--faint);margin:0 7px}
+  .tile .num .now{color:var(--green)}
+  .tile .k{color:var(--muted);font-size:13px;margin-top:8px}
+  .tile .prov{color:var(--faint);font-size:11px;margin-top:10px}
+  ul.plain{list-style:none;padding:0;margin:18px 0 0}
+  ul.plain li{padding:14px 0;border-top:1px solid var(--line);color:var(--muted)}
+  ul.plain li:first-child{border-top:0}
+  ul.plain b{color:var(--ink);font-weight:600} ul.plain .g{font-weight:600}
+  table{width:100%;border-collapse:collapse;margin-top:18px;font-size:13px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
+  th{color:var(--faint);font-weight:600;text-transform:uppercase;font-size:11px;letter-spacing:1px}
+  td .n{color:var(--ink);font-weight:600}
+  .cut td:first-child{color:var(--red)}
+  pre{background:#06090c;border:1px solid var(--line);border-radius:12px;padding:20px;overflow:auto;
+    font-size:13px;line-height:1.7;color:var(--ink);margin-top:18px}
+  pre .c{color:var(--faint)} pre .p{color:var(--green)}
+  footer{padding:44px 0 80px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">tinygate · measured edition</div>
+  <h1>A <span class="g">391-line</span> ECU for<br>AI coding agents.</h1>
+  <p class="lede">One file, zero dependencies. It closes a task only when a stored proof exits
+    green — run fresh, that moment — and runs missions under a hard cap on a cheap model.
+    Built under one rule: <b class="muted">every mechanism must beat an A/B test or it gets cut.</b>
+    About half didn't survive.</p>
+  <div class="install">
+    <code>node tiny.mjs install</code>
+    <a class="btn" href="#what">What survived</a>
+    <a class="btn ghost" href="THESIS.md">Read the thesis</a>
+  </div>
+</header>
+
+<section>
+  <div class="eyebrow">the receipts</div>
+  <div class="receipts">
+    <div class="tile">
+      <div class="num"><span class="now">391</span></div>
+      <div class="k">lines. Zero deps, one file.</div>
+      <div class="prov">every line earns an A/B</div>
+    </div>
+    <div class="tile">
+      <div class="num"><span class="was">89.3K</span><span class="arrow">→</span><span class="now">55.7K</span></div>
+      <div class="k">tokens/task vs raw agent</div>
+      <div class="prov">−37%, accuracy tied 6/6 · run-ab3</div>
+    </div>
+    <div class="tile">
+      <div class="num"><span class="was">17.2s</span><span class="arrow">→</span><span class="now">128ms</span></div>
+      <div class="k">on a repeated task (replay)</div>
+      <div class="prov">3/3 graded correct · run-replay</div>
+    </div>
+    <div class="tile">
+      <div class="num"><span class="now">10/10</span></div>
+      <div class="k">tests green, no model needed</div>
+      <div class="prov">node --test tinygate.test.mjs</div>
+    </div>
+  </div>
+</section>
+
+<section id="what">
+  <div class="eyebrow">what survived</div>
+  <h2>Four mechanisms, each with a receipt.</h2>
+  <ul class="plain">
+    <li><b>The proof gate.</b> <span class="g">“Done” exists only on a fresh green exit code.</span>
+      Model language is optimized to be convincing, not true — self-report can't gate closure, an exit
+      code can. It also makes cheap-model routing safe: reliability was never the model's to assert.</li>
+    <li><b>The governed mission.</b> Headless run under a turn cap, low effort, lean env, tight output
+      policy. <span class="g">−37% tokens vs raw at tied accuracy.</span> The savings are entirely in the
+      prompt and the flags — no heavy machinery.</li>
+    <li><b>Replay.</b> A repeated task-class restores its cached file-state and re-proves fresh, zero
+      model — <span class="g">17.2s → 128ms</span>. Honest limit: it only fires on <i>repeats</i> (CI,
+      evals, batch); near-inert for one-off work, but idle-cost is ~nil so it stays as cheap insurance.</li>
+    <li><b>The tax meter.</b> A read-only session beacon: per-message tokens vs the fresh floor, so you
+      know when to start fresh (the 15–21× accumulation lever). It reports; <b>it never refuses.</b></li>
+  </ul>
+</section>
+
+<section>
+  <div class="eyebrow">what was cut — and the measurement that killed it</div>
+  <h2>The discipline is the product.</h2>
+  <p class="muted">Every one of these seemed obviously helpful. Each was built, A/B'd, and deleted when
+    the number came back wrong.</p>
+  <table>
+    <tr><th>Cut</th><th>Why (measured)</th></tr>
+    <tr class="cut"><td>Refusal governor</td><td><span class="n r">+62.9% tokens.</span> Each hard refusal forces an extra model round-trip that dwarfs the output it prevents.</td></tr>
+    <tr class="cut"><td>Best-of-N racing</td><td><span class="n r">36s / 293K</span> on a trivial task. Parallel agents contend on one machine; the speedup needs independent serving capacity.</td></tr>
+    <tr class="cut"><td>Context pre-loading</td><td>Turns went <span class="n r">up</span>, not down — the model thrashed. Re-billed the injected files every turn for no gain.</td></tr>
+    <tr class="cut"><td>Model-escalation ladder</td><td>Never A/B'd → cut on principle. Strike-counting + park (the thrash-breaker) was kept; that's safety, not the unproven escalation.</td></tr>
+    <tr class="cut"><td>Gauge dashboard, IP mandate, MCP, chat, case-law memory, locate/vault/statusline</td><td>None moved a speed / cost / accuracy number.</td></tr>
+  </table>
+</section>
+
+<section>
+  <div class="eyebrow">the honest limits</div>
+  <h2>What it is, and isn't.</h2>
+  <ul class="plain">
+    <li><b class="r">Not a speed chip.</b> First-run wall is the model's floor (turns × latency). Five
+      architectures were built to get a fresh task under 9s; all five regressed. The one speed lever is
+      replay, and it only turns on repeats.</li>
+    <li><b>A token + accuracy chip.</b> Expect cheaper and more honest closure. It's a governor <i>on</i>
+      the model — leaner fuel, verified done — not an upgrade <i>of</i> it. An ECU leans the mixture; it
+      doesn't add cylinders.</li>
+    <li><b>Small samples, open method.</b> The A/Bs are n=3–6, one machine, one model tier. The runners
+      are in <code>bench/</code>. The only number that transfers is the one you measure on your workload.</li>
+  </ul>
+</section>
+
+<section>
+  <div class="eyebrow">quickstart — the proof-gated lane</div>
+<pre><span class="c"># author a task with a machine-checkable proof (born-green proofs are refused)</span>
+node tiny.mjs add "implement sumDigits" \
+  --prove 'node -e "import(\"./solution.mjs\").then(m=>process.exit(m.sumDigits(238)===13?0:1))"' \
+  --repo . --check
+
+<span class="c"># drive it: claim → governed mission → FRESH proof → done  (a repeat replays in ~0.1s)</span>
+node tiny.mjs work
+
+<span class="c"># or a one-off governed mission</span>
+node tiny.mjs run --model haiku -- "fix the failing test in parser.mjs"
+
+<span class="c"># session context meter — when to start fresh</span>
+node tiny.mjs tax</pre>
+</section>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    tinygate · one file · zero deps · MIT ·
+    <a href="THESIS.md">thesis</a> ·
+    <a href="../README.md">readme</a> ·
+    <a href="../bench/">benchmarks</a><br>
+    <span class="faint">The tool's own rule applies to the tool: don't take the claim — take the measurement.</span>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

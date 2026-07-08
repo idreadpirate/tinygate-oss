@@ -1,0 +1,6 @@
+{"arm":"off","rep":1,"tokens":126678,"turns":7,"wall":27466,"pass":true,"fires":1,"savedB":2000}
+{"arm":"on","rep":1,"tokens":205284,"turns":11,"wall":37718,"pass":true,"fires":5,"savedB":4934}
+{"arm":"off","rep":2,"tokens":104401,"turns":6,"wall":25224,"pass":true,"fires":1,"savedB":2000}
+{"arm":"on","rep":2,"tokens":245410,"turns":13,"wall":32659,"pass":true,"fires":5,"savedB":4934}
+{"arm":"off","rep":3,"tokens":126018,"turns":7,"wall":22521,"pass":true,"fires":1,"savedB":2000}
+{"arm":"on","rep":3,"tokens":186339,"turns":10,"wall":38749,"pass":true,"fires":5,"savedB":5150}
