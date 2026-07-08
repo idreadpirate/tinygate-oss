@@ -71,10 +71,32 @@ Config is `config.json` — every knob is validated at load, so a NaN or negativ
 than silently disabling a safety. Data lives in `data/`. Env: `TINYAI_DATA`, `TINYAI_CONFIG`,
 `TINYAI_TRANSCRIPTS`, `TINYAI_POLL_MS`.
 
+## SDK
+
+A thin, zero-dep programmatic wrapper (`sdk.mjs`) drives the same engine and returns structured results
+instead of CLI text — throwing on failure. Nothing is reimplemented.
+
+```js
+import { Tinygate } from './sdk.mjs';
+
+const tg = new Tinygate({ data: './.tg', cwd: '.' });
+
+const id = await tg.add('implement parser', {
+  prove: 'node -e "import(\'./parser.mjs\').then(m=>process.exit(m.parse(\'1+2\')===3?0:1))"',
+  repo: '.', check: true,                 // check:true refuses a born-green proof
+});
+
+const { done, refused } = await tg.work();  // claim → govern → prove-fresh → done (repeats replay)
+const t = await tg.tax();                   // { perMsg, x, verdict } — when to start fresh
+```
+
+Methods: `add · work · run · done · prove · tax · status · list`, plus the pure `sigOf` re-export.
+
 ## Proof
 
 ```bash
-node --test tinygate.test.mjs     # 10/10, no model required
+node --test tinygate.test.mjs     # 10/10 engine tests, no model required
+node --test sdk.test.mjs          # 5/5 SDK tests, no model required
 ```
 
 Covers config and cap validation, the born-green refusal, task-class signatures, a full zero-model replay
