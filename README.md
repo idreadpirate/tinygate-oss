@@ -6,8 +6,6 @@ tinygate sits between an AI coding agent and two things it can't be trusted with
 *what it cost*. A task closes only when a stored proof command exits green, run fresh at that moment.
 Missions run under a hard token cap on a cheap model. The tool drives; the model is the engine.
 
-Every mechanism in it earns its place against an A/B test. Nothing ships on intuition.
-
 ## Install
 
 ```bash
