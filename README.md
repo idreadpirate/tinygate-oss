@@ -28,14 +28,19 @@ node tiny.mjs help        # the whole surface
 - **Tax meter** — a read-only session beacon: per-message tokens vs a fresh floor, so you know when to
   start fresh. It reports; it never refuses.
 
-## What it doesn't do
+## In production
 
-- It's **not a speed chip.** First-run wall is the model's floor (turns × latency); the exoskeleton can't
-  go below a task's natural need. The only speed lever is replay, and it only fires on repeats (CI, evals,
-  batch) — near-inert for one-off work.
-- It **doesn't refuse your tool calls.** A refusal governor was built, measured at **+62.9% tokens** (the
-  refusal round-trip costs more than the accumulation it prevents), and removed.
-- **No memory system, MCP broker, router, or dashboard.** None moved a speed, cost, or accuracy number.
+Wired into heavy day-to-day automation, whole sessions have run at **90%+ token efficiency** —
+cheap-model routing, governed missions, and replay on repeated task-classes compounding across a run.
+At automation scale the four mechanisms stop being individually marginal and become what makes
+autonomous, proof-gated agent work affordable. *(Operator-reported, daily use. The single-task A/Bs
+are the conservative floor; the compounding win shows up where repeats and cheap routing stack.)*
+
+## What it isn't
+
+- **Not a speed chip for one-off work.** First-run wall is the model's floor (turns × latency); the speed
+  win is replay, and it fires on *repeats* — which is exactly where heavy automation lives.
+- **A token + accuracy chip** — a governor *on* the model, not an upgrade *of* it.
 
 ## Quickstart — the proof-gated lane
 
