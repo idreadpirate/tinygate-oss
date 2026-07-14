@@ -1,0 +1,44 @@
+{
+  "name": "tinygate",
+  "version": "1.1.0",
+  "description": "A one-file, zero-dependency ECU for AI coding agents: proof-gated closure, cheap-model missions, replay on repeats.",
+  "type": "module",
+  "bin": {
+    "tinygate": "tiny.mjs",
+    "tiny": "tiny.mjs"
+  },
+  "exports": {
+    ".": "./sdk.mjs",
+    "./engine": "./tiny.mjs"
+  },
+  "files": [
+    "tiny.mjs",
+    "sdk.mjs",
+    "docs/THESIS.md"
+  ],
+  "scripts": {
+    "test": "node --test tinygate.test.mjs sdk.test.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "agent",
+    "ai",
+    "task-queue",
+    "proof-gate",
+    "cli",
+    "llm",
+    "verification",
+    "tokens"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idreadpirate/tinygate-oss.git"
+  },
+  "homepage": "https://github.com/idreadpirate/tinygate-oss#readme",
+  "bugs": {
+    "url": "https://github.com/idreadpirate/tinygate-oss/issues"
+  }
+}
