@@ -31,11 +31,11 @@ to start fresh (the 15–21× accumulation lever). It reports; it never refuses.
 
 ## In production
 
-Wired into heavy day-to-day automation, whole sessions have run at **90%+ token efficiency** — cheap-model
-routing, governed missions, and replay on repeated task-classes compounding across a run. At that scale
-the four mechanisms stop being individually marginal and become the thing that makes autonomous,
-proof-gated agent work affordable. It is a critical part of the operator's everyday agentic workflow, not
-a demo.
+Wired into heavy day-to-day automation, some whole sessions have run at **90%+ token efficiency** —
+cheap-model routing, governed missions, and replay on repeated task-classes compounding across a run. At
+that scale the four mechanisms stop being individually marginal and become the thing that makes
+autonomous, proof-gated agent work affordable. It is a critical part of the operator's everyday agentic
+workflow, not a demo — but not every session compounds like the best ones.
 
 *(Operator-reported, production automation. The controlled single-task A/Bs below are the conservative
 floor; the compounding win shows up at automation scale, where repeats and cheap routing stack.)*
@@ -62,7 +62,7 @@ Measured on haiku-low against an ungameable external grader (answers built by co
 | Size | **696 lines**, zero deps, one file | `wc -l` |
 | Governed vs raw | **−37% tokens, accuracy tied 6/6** | `bench/run-ab3.mjs` |
 | Replay on a repeat | **17.2s → 128ms**, 3/3 graded correct | `bench/run-replay.mjs` |
-| Production automation | **90%+ token efficiency** on full sessions | operator-reported, daily use |
+| Production automation | **90%+ token efficiency** on the best full sessions | operator-reported, daily use; not every session |
 | Tests | **13/13** engine · **5/5** SDK, no model | `node --test *.test.mjs` |
 
 The tool's own rule applies to the tool: don't take the claim — take the measurement.

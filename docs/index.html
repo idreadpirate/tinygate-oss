@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>tinygate — a 696-line ECU for AI coding agents</title>
-<meta name="description" content="A 696-line, zero-dependency governor for AI coding agents: proof-gated closure, cheap-model missions, replay on repeats. 90%+ token efficiency in heavy automation.">
+<meta name="description" content="A 696-line, zero-dependency governor for AI coding agents: proof-gated closure, cheap-model missions, replay on repeats. Some heavy-automation sessions hit 90%+ token efficiency.">
 <style>
   :root{
     --surface:#0a0e12; --surface-2:#11161c; --line:#1e262e;
@@ -62,7 +62,7 @@
   <h1>A <span class="g">696-line</span> ECU for<br>AI coding agents.</h1>
   <p class="lede">One file, zero dependencies. It closes a task only when a stored proof exits
     green — run fresh, that moment — and runs missions under a hard cap on a cheap model.
-    In heavy automation, whole sessions run at <b class="g">90%+ token efficiency.</b></p>
+    In heavy automation, some whole sessions hit <b class="g">90%+ token efficiency.</b></p>
   <div class="install">
     <code>node tiny.mjs install</code>
     <a class="btn" href="#what">What it does</a>
@@ -90,8 +90,8 @@
     </div>
     <div class="tile">
       <div class="num"><span class="now">90%+</span></div>
-      <div class="k">token efficiency in production</div>
-      <div class="prov">heavy automation · daily use</div>
+      <div class="k">token efficiency, best production sessions</div>
+      <div class="prov">operator-reported · not every session</div>
     </div>
   </div>
 </section>
@@ -116,14 +116,14 @@
 
 <section>
   <div class="eyebrow">in production</div>
-  <h2>90%+ token efficiency, at automation scale.</h2>
-  <p class="muted">Wired into heavy day-to-day automation, whole sessions have run at
+  <h2>Some sessions hit 90%+ token efficiency.</h2>
+  <p class="muted">Wired into heavy day-to-day automation, some whole sessions have run at
     <b class="g">90%+ token efficiency</b> — cheap-model routing, governed missions, and replay on
-    repeated task-classes compounding across a run. At that scale the four mechanisms stop being
-    individually marginal and become what makes autonomous, proof-gated agent work affordable. It's a
-    critical part of the operator's everyday agentic workflow, not a demo.</p>
-  <p class="faint">Operator-reported, production automation. The single-task A/Bs above are the
-    conservative floor; the compounding win shows up where repeats and cheap routing stack.</p>
+    repeated task-classes compounding across a run. Not every session looks like that: the compounding
+    win shows up where repeats and cheap routing stack, and the single-task A/Bs above are the
+    conservative floor.</p>
+  <p class="faint">Operator-reported, production automation — one operator, one environment. Mostly a
+    personal tool and research project, shared in case someone wants to carry the torch further.</p>
 </section>
 
 <section>

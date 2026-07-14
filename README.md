@@ -28,11 +28,11 @@ node tiny.mjs help        # the whole surface
 
 ## In production
 
-Wired into heavy day-to-day automation, whole sessions have run at **90%+ token efficiency** —
+Wired into heavy day-to-day automation, **some whole sessions have run at 90%+ token efficiency** —
 cheap-model routing, governed missions, and replay on repeated task-classes compounding across a run.
-At automation scale the four mechanisms stop being individually marginal and become what makes
-autonomous, proof-gated agent work affordable. *(Operator-reported, daily use. The single-task A/Bs
-are the conservative floor; the compounding win shows up where repeats and cheap routing stack.)*
+Not every session looks like that: the compounding win shows up where repeats and cheap routing
+stack, and the single-task A/Bs are the conservative floor. *(Operator-reported, daily use — one
+operator, one environment.)*
 
 ## What it isn't
 
@@ -114,10 +114,12 @@ results are ungameable. The only number that transfers is the one you measure on
 
 ## Status, honestly
 
-tinygate is working research, shipped. The engine is small on purpose, every number above is dated and
-carries its method, and the negative results stay on the books next to the wins (a refusal governor and
-a best-of-N racer both lost their A/Bs and were cut — the receipts are in `bench/`). It runs in
-production daily on the author's machines — and that is exactly one environment.
+tinygate is, first and honestly, **a personal tool and a research project** — built for my own daily
+automation, shared because the results seemed interesting enough to show, and because someone might
+want to carry the torch further than I have. The engine is small on purpose, every number above is
+dated and carries its method, and the negative results stay on the books next to the wins (a refusal
+governor and a best-of-N racer both lost their A/Bs and were cut — the receipts are in `bench/`). It
+runs daily on the author's machines — and that is exactly one environment.
 
 - **Use at your own risk.** MIT, no warranty. It spawns headless agent missions and writes files in the
   repos you point it at — read `tiny.mjs` (it's one file) before wiring it into anything you care about,
@@ -125,6 +127,7 @@ production daily on the author's machines — and that is exactly one environmen
 - **Continue the research.** The benchmarks in `bench/` are a method, not gospel. Run them on your
   workload, your model, your machine. If your numbers disagree, that's a finding — open an issue with
   the receipts. Replications, refutations, and new mechanisms that survive an A/B are equally welcome.
+  If this territory interests you, fork it and run further than I did — that's the point of sharing it.
 
 ## License
 
