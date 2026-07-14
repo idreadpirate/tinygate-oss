@@ -35,10 +35,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/idreadpirate/tinygate-oss.git"
+    "url": "git+https://github.com/idreadpirate/tinygate.git"
   },
-  "homepage": "https://github.com/idreadpirate/tinygate-oss#readme",
+  "homepage": "https://github.com/idreadpirate/tinygate#readme",
   "bugs": {
-    "url": "https://github.com/idreadpirate/tinygate-oss/issues"
+    "url": "https://github.com/idreadpirate/tinygate/issues"
   }
 }
