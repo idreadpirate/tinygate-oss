@@ -112,6 +112,20 @@ The A/B runners behind every claim are in [`bench/`](bench/), with the raw resul
 random inputs the agent never sees (`bench/grade.mjs` builds expected answers by construction), so the
 results are ungameable. The only number that transfers is the one you measure on your own workload.
 
+## Status, honestly
+
+tinygate is working research, shipped. The engine is small on purpose, every number above is dated and
+carries its method, and the negative results stay on the books next to the wins (a refusal governor and
+a best-of-N racer both lost their A/Bs and were cut — the receipts are in `bench/`). It runs in
+production daily on the author's machines — and that is exactly one environment.
+
+- **Use at your own risk.** MIT, no warranty. It spawns headless agent missions and writes files in the
+  repos you point it at — read `tiny.mjs` (it's one file) before wiring it into anything you care about,
+  and keep it away from repos you can't afford to surprise.
+- **Continue the research.** The benchmarks in `bench/` are a method, not gospel. Run them on your
+  workload, your model, your machine. If your numbers disagree, that's a finding — open an issue with
+  the receipts. Replications, refutations, and new mechanisms that survive an A/B are equally welcome.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
