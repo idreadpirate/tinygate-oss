@@ -30,9 +30,9 @@ export class Tinygate {
   constructor({ data, config, cwd, transcripts } = {}) {
     this.cwd = cwd;
     this.env = {};
-    if (data) this.env.TINYAI_DATA = data;
-    if (config) this.env.TINYAI_CONFIG = config;
-    if (transcripts) this.env.TINYAI_TRANSCRIPTS = transcripts;
+    if (data) this.env.TINYGATE_DATA = data;
+    if (config) this.env.TINYGATE_CONFIG = config;
+    if (transcripts) this.env.TINYGATE_TRANSCRIPTS = transcripts;
   }
   _(args, extra) { return cli(args, { cwd: this.cwd, env: this.env, ...extra }); }
 

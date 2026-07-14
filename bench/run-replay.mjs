@@ -6,7 +6,7 @@ import fs from 'node:fs'; import os from 'node:os';
 import { join, dirname } from 'node:path'; import { fileURLToPath } from 'node:url';
 import { median } from './lib.mjs';
 const HERE = dirname(fileURLToPath(import.meta.url));
-const TASKS = join(HERE, 'tasks'), GRADE = join(HERE, 'grade.mjs'), TINY2 = join(HERE, '..', '..', 'tiny2.mjs');
+const TASKS = join(HERE, 'tasks'), GRADE = join(HERE, 'grade.mjs'), TINY2 = join(HERE, '..', 'tiny.mjs');
 const SEED = 424242, K = 500, ALLOWED = 'Write,Read,Edit,Bash';
 const TASK = 'implement the export in solution.mjs, correct for ALL valid inputs per README.md';
 const P = (body) => `node -e "import('./solution.mjs').then(m=>{process.exit((${body})?0:1)}).catch(()=>process.exit(1))"`;

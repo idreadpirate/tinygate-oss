@@ -1,6 +1,6 @@
 # tinygate
 
-**A 391-line ECU for AI coding agents. One file, zero dependencies.**
+**A 696-line ECU for AI coding agents. One file, zero dependencies.**
 
 tinygate sits between an AI coding agent and two things it can't be trusted with — *what is true* and
 *what it cost*. A task closes only when a stored proof command exits green, run fresh at that moment.
@@ -71,8 +71,8 @@ install                                  Claude Code SessionStart beacon
 ```
 
 Config is `config.json` — every knob is validated at load, so a NaN or negative cap is refused rather
-than silently disabling a safety. Data lives in `data/`. Env: `TINYAI_DATA`, `TINYAI_CONFIG`,
-`TINYAI_TRANSCRIPTS`, `TINYAI_POLL_MS`.
+than silently disabling a safety. Data lives in `data/`. Env: `TINYGATE_DATA`, `TINYGATE_CONFIG`,
+`TINYGATE_TRANSCRIPTS`, `TINYGATE_POLL_MS` (the legacy `TINYAI_*` names still work).
 
 ## SDK
 
@@ -98,12 +98,13 @@ Methods: `add · work · run · done · prove · tax · status · list`, plus th
 ## Proof
 
 ```bash
-node --test tinygate.test.mjs     # 10/10 engine tests, no model required
+node --test tinygate.test.mjs     # 13/13 engine tests, no model required
 node --test sdk.test.mjs          # 5/5 SDK tests, no model required
 ```
 
 Covers config and cap validation, the born-green refusal, task-class signatures, a full zero-model replay
-round-trip, and the replay path-fence (a cache entry escaping the repo is skipped, never written).
+round-trip, the replay path-fence (a cache entry escaping the repo is skipped, never written), and queue
+behavior under duds (a parked or proofless task can never head-of-line-block the tasks behind it).
 
 ## Reproduce the numbers
 

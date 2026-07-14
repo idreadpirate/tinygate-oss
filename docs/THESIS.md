@@ -2,7 +2,7 @@
 
 *Wrap a stochastic engine in a deterministic exoskeleton; let the skeleton carry what language can't.*
 
-tinygate is one zero-dependency Node file — **391 lines** — that sits between an AI coding agent and
+tinygate is one zero-dependency Node file — **696 lines** — that sits between an AI coding agent and
 two things it can't be trusted with: **what is true** and **what it cost**. A task closes only when a
 stored proof command exits green, run fresh at that moment. Missions run under a hard token cap on a
 cheap model. The tool drives; the model is the engine.
@@ -59,11 +59,11 @@ Measured on haiku-low against an ungameable external grader (answers built by co
 
 | Receipt | Number | How |
 |---|---|---|
-| Size | **391 lines**, zero deps, one file | `wc -l` |
+| Size | **696 lines**, zero deps, one file | `wc -l` |
 | Governed vs raw | **−37% tokens, accuracy tied 6/6** | `bench/run-ab3.mjs` |
 | Replay on a repeat | **17.2s → 128ms**, 3/3 graded correct | `bench/run-replay.mjs` |
 | Production automation | **90%+ token efficiency** on full sessions | operator-reported, daily use |
-| Tests | **10/10** engine · **5/5** SDK, no model | `node --test *.test.mjs` |
+| Tests | **13/13** engine · **5/5** SDK, no model | `node --test *.test.mjs` |
 
 The tool's own rule applies to the tool: don't take the claim — take the measurement.
 

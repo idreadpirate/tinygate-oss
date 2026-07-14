@@ -1,6 +1,9 @@
+// HISTORICAL RECEIPT — this measures the PreToolUse refusal governor that lost its A/B (+62.9%
+// tokens) and was CUT from the engine. Kept as the negative-result method; it needs the pre-cut
+// build and will not run against this repo's engine.
 // Governor A/B: same debugging task (run a verbose test suite, fix the bug), governor OFF vs ON.
-// ON wires tiny2's PreToolUse hook (refuse unredirected verbose + exact re-reads). Measures total
-// tokens, counts real governor firings, and checks the task actually completed (tests pass).
+// ON wires the pre-cut engine's PreToolUse hook (refuse unredirected verbose + exact re-reads).
+// Measures total tokens, counts real governor firings, and checks the task actually completed.
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs'; import os from 'node:os';
 import { join, dirname } from 'node:path'; import { fileURLToPath } from 'node:url';

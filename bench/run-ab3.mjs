@@ -1,4 +1,5 @@
-// 3-arm A/B: raw claude vs old tiny.mjs vs new tiny2.mjs, same ungameable gauntlet grader.
+// 3-arm A/B: raw claude vs the pre-cut predecessor engine vs this repo's engine, same ungameable
+// gauntlet grader. The 'old' arm needs the predecessor (not bundled) and is skipped if absent.
 // Each cell: copy README + solution stub into a fresh temp dir, run the arm headless, grade on
 // K random inputs the agent never sees (truth-by-construction), measure tokens/turns/wall.
 import { spawnSync } from 'node:child_process';
@@ -7,7 +8,8 @@ import { join, dirname } from 'node:path'; import { fileURLToPath } from 'node:u
 import { measure, median } from './lib.mjs';
 const HERE = dirname(fileURLToPath(import.meta.url));
 const TASKS = join(HERE, 'tasks'), GRADE = join(HERE, 'grade.mjs');
-const TINY = join(HERE, '..', '..', 'tiny.mjs'), TINY2 = join(HERE, '..', '..', 'tiny2.mjs');
+const TINY = process.env.LEGACY_ENGINE || join(HERE, '..', '..', 'tiny.mjs'); // predecessor, not bundled
+const TINY2 = join(HERE, '..', 'tiny.mjs');                                   // this repo's engine
 const OUT = join(HERE, 'ab3-results.jsonl'); if (!fs.existsSync(OUT)) fs.writeFileSync(OUT, '');
 const done = new Set(fs.readFileSync(OUT, 'utf8').split('\n').filter(Boolean).map(l => { try { const r = JSON.parse(l); return r.task + '|' + r.arm; } catch { return ''; } }));
 const SEED = 424242, K = 500, ALLOWED = 'Write,Read,Edit,Bash';
@@ -33,7 +35,7 @@ function cell(task, arm, fn) {
   console.log(`[${task.padEnd(18)} ${arm.padEnd(4)}] pass=${row.passed ? 'Y' : 'n'} tok=${String(tokens).padStart(7)} turns=${String(turns).padStart(2)} wall=${Math.round(wall / 1000)}s`);
   try { fs.rmSync(cwd, { recursive: true, force: true }); } catch {}
 }
-for (const t of SUBSET) for (const arm of ['raw', 'old', 'new']) cell(t, arm, ARMS[arm]);
+for (const t of SUBSET) for (const arm of ['raw', 'old', 'new']) { if (arm === 'old' && !fs.existsSync(TINY)) continue; cell(t, arm, ARMS[arm]); }
 // summary
 const rows = fs.readFileSync(OUT, 'utf8').split('\n').filter(Boolean).map(l => JSON.parse(l)).filter(r => SUBSET.includes(r.task));
 console.log('\n=== SUMMARY (n=' + SUBSET.length + ' tasks) ===');

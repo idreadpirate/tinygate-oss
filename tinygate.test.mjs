@@ -1,4 +1,4 @@
-// tiny2 hardening + core tests — no model required. Run: node --test tiny2.test.mjs
+// tinygate hardening + core tests — no model required. Run: node --test tinygate.test.mjs
 import { test } from 'node:test';
 import assert from 'node:assert';
 import { spawnSync } from 'node:child_process';
@@ -59,7 +59,7 @@ test('replay: a matching task-class restores file-state + re-proves green, ZERO 
   const prove = `node -e "import('./solution.mjs').then(m=>process.exit(m.f(2)===4?0:1)).catch(()=>process.exit(1))"`;
   const title = 'double it';
   const data = join(d, '.data');
-  // pre-seed the replay cache for this exact task-class (sig computed the same way tiny2 does)
+  // pre-seed the replay cache for this exact task-class (sig computed the same way the engine does)
   const sig = sigOf({ repo: d, title, prove });
   fs.mkdirSync(join(data, 'replays'), { recursive: true });
   fs.writeFileSync(join(data, 'replays', sig + '.json'), JSON.stringify({ title, files: { 'solution.mjs': impl } }));
@@ -70,6 +70,40 @@ test('replay: a matching task-class restores file-state + re-proves green, ZERO 
   assert.match(w.stdout, /replayed — zero model/);                       // took the replay path, no mission
   assert.strictEqual(fs.readFileSync(join(d, 'solution.mjs'), 'utf8'), impl); // file restored
   assert.strictEqual(fs.readdirSync(join(data, 'tasks', 'done')).length, 1);  // closed via fresh proof
+});
+test('work: a proofless dud at the head of the queue does not block the task behind it', () => {
+  const d = tmp();
+  const data = join(d, '.data');
+  const env = { TINYAI_DATA: data };
+  assert.strictEqual(run(['add', 'dud with no proof'], { cwd: d, env }).status, 0);
+  assert.strictEqual(run(['add', 'green task', '--prove', 'node -e "process.exit(0)"'], { cwd: d, env }).status, 0);
+  const w = run(['work'], { cwd: d, env });
+  assert.strictEqual(w.status, 0, w.stderr);
+  assert.match(w.stdout, /already green — no mission/);   // reached the workable task
+  assert.match(w.stdout, /work: 1 done/);
+});
+test('work: a parked task (max strikes) is skipped, not head-blocking', () => {
+  const d = tmp();
+  const data = join(d, '.data');
+  const env = { TINYAI_DATA: data };
+  const ready = join(data, 'tasks', 'ready');
+  fs.mkdirSync(ready, { recursive: true });
+  // '000park' sorts before any timestamp id → it is always claimed first
+  fs.writeFileSync(join(ready, '000park.json'), JSON.stringify({ id: '000park', title: 'stuck', prove: 'node -e "process.exit(1)"', strikes: 99 }));
+  assert.strictEqual(run(['add', 'green task', '--prove', 'node -e "process.exit(0)"'], { cwd: d, env }).status, 0);
+  const w = run(['work'], { cwd: d, env });
+  assert.strictEqual(w.status, 0, w.stderr);
+  assert.match(w.stderr, /parked 000park/);
+  assert.match(w.stdout, /work: 1 done/);
+});
+test('env: TINYGATE_DATA is honored; TINYAI_* stays as a fallback', () => {
+  const d = tmp();
+  const data = join(d, 'gate-data');
+  const e = { ...process.env, TINYGATE_DATA: data };
+  delete e.TINYAI_DATA;
+  const r = spawnSync(process.execPath, [TINY, 'status'], { cwd: d, encoding: 'utf8', env: e });
+  assert.strictEqual(r.status, 0);
+  assert.ok(fs.existsSync(join(data, 'tasks', 'ready')), 'TINYGATE_DATA dir must be used');
 });
 test('replay path-fence: a cache entry escaping the repo is skipped, not written', () => {
   const d = tmp();

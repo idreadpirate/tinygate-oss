@@ -1,4 +1,6 @@
-// Race A/B: single governed attempt vs best-of-N proof-arbitrated race (tiny2 race).
+// HISTORICAL RECEIPT — this measures the best-of-N racer that lost its A/B and was CUT from the
+// engine. Kept as the negative-result method; it needs the pre-cut build (`race` verb).
+// Race A/B: single governed attempt vs best-of-N proof-arbitrated race.
 // Question: does best-of-N with proof-gated early termination cut first-run WALL toward ~9s
 // while holding/raising accuracy? Cost is the honest tradeoff (≈N× tokens until the winner lands).
 import { spawnSync } from 'node:child_process';
